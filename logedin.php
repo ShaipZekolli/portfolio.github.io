@@ -113,9 +113,6 @@ if(isset($_SESSION['usernameID'])) {
 								</form>
 								<section>
 									<div class="row">
-										<div class="contact">
-											<a href="#" class="image fit"><img src="images/pic01.jpg" alt=""></a>
-										</div>
 										<?php require "connect.php";
 											$quereypath ="Select path,ext From path";
 											$quereyrezpath = mysqli_query($connect,$quereypath);
