@@ -107,7 +107,7 @@ if(isset($_SESSION['usernameID'])) {
 								 }
 									?>
 								<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" enctype="multipart/form-data">
-								  Select image to upload:
+								  Select file to upload:
 								  <input type="file" name="fileToUpload" id="fileToUpload">
 								  <input type="submit" value="Upload" name="submit">
 								</form>
