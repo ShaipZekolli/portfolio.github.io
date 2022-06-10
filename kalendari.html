@@ -1,0 +1,76 @@
+<html>
+  <style>
+      body{
+        background-color: black;
+        color: white;
+      }
+      .red{
+            box-shadow: 0px 0px 9px 1px;
+            border-radius: 5px;
+            background-color: #f44336;
+            color: black;
+            font-weight: 800;
+      }
+      th{
+        padding: 10px;
+      }
+      td{
+        padding: 3px;
+      }
+      .sat{
+        color: gray
+      }
+      .sun{
+        color: gray
+      }
+      table {
+    text-indent: 35px !important;}
+    </style>
+  <head>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  </head>
+  <body>
+  <div id="pi"></div>
+  <py-script> 
+    import calendar
+    import pyodide_js
+    import datetime
+    from calendar import monthcalendar 
+    
+    current_time = datetime.datetime.now() 
+    days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+    day = days[current_time.weekday()]
+    text_cal = calendar.HTMLCalendar(firstweekday = 0)
+
+    year = current_time.year
+    month = current_time.month
+
+    s = text_cal.formatmonth(year, month)
+    pyscript.write('pi', f'{s}')
+    collection = document.getElementsByClassName(f"{day.lower()}")
+
+    def get_week_of_month(year, month, day):
+        return next(
+            (
+                week_number
+                for week_number, days_of_week in enumerate(monthcalendar(year, month), start=1)
+                if day in days_of_week
+            ),
+            None,
+        )
+
+    i = get_week_of_month(year, month , current_time.day)
+    
+    try:
+
+        d = current_time.day
+        dd = collection[i].innerHTML
+        if d == int(dd):
+            collection[i].setAttribute("class", "red")
+
+    except:
+        print("error")
+  </py-script>
+  </body>
+</html>
